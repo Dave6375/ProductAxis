@@ -8,6 +8,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { ClerkProvider } from "@clerk/nextjs";
 import { AppStateProvider } from "@/lib/hooks/use-app-state";
 import { AppSettingsProvider } from "@/lib/hooks/use-app-settings";
+import { ExecutionResultProvider } from "@/lib/hooks/use-execution-result"
 
 export function Providers({ children, ...props }: ThemeProviderProps) {
     return (
