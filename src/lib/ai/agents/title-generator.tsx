@@ -10,16 +10,13 @@ Follow these guidelines:
 4. Avoid using special characters, periods, or excessive punctuation
 5. Capitalize the first letter of each major word
 
-e.g. "Analyze of Trends", "Content Creation DB", "Contact Form with Validation"
-
-If the query is not directly related to React UI components or design patterns, generate a title that frames it in terms of React component architecture, such as "User Settings Panel" for account management or "Analytics Dashboard Grid" for data visualization.
-
-Respond with only the generated title, without any additional explanation, formatting or punctuation`;
+e.g. "Data Processing Pipeline", "Content Creation DB", "Contact Form with Validation"
+`;
 
 export async function generateTitle(query: string): Promise<string> {
     let title = "";
 
-    await streamText({
+    const result = await streamText({
         model: getModel(),
         messages: [
             {
@@ -31,12 +28,13 @@ export async function generateTitle(query: string): Promise<string> {
         onFinish: (event) => {
             title = event.text;
         },
-    }).then(async (result) => {
-        for await (const text of result.textStream) {
-            if (text) {
-                title = text;
-            }
-        }
     });
 
+    for await (const text of result.textStream) {
+        if (text) {
+            title += text;
+        }
+    }
+
     return title;
+}

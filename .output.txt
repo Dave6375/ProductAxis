@@ -1,0 +1,365 @@
+node_modules/ai/dist/index.d.ts:1580:64 - error TS2694: Namespace 'Intl' has no exported member 'Segmenter'.
+1580     chunking?: 'word' | 'line' | RegExp | ChunkDetector | Intl.Segmenter;
+                                                                    ~~~~~~~~~
+node_modules/zod/v3/errors.d.cts:2:8 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v3/locales/en"' can only be default-imported using the 'esModuleInterop' flag
+2 import defaultErrorMap from "./locales/en.cjs";
+         ~~~~~~~~~~~~~~~
+  node_modules/zod/v3/locales/en.d.cts:3:1
+    3 export = errorMap;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:1:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ar"' can only be default-imported using the 'esModuleInterop' flag
+1 export { default as ar } from "./ar.cjs";
+                      ~~
+  node_modules/zod/v4/locales/ar.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:2:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/az"' can only be default-imported using the 'esModuleInterop' flag
+2 export { default as az } from "./az.cjs";
+                      ~~
+  node_modules/zod/v4/locales/az.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:3:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/be"' can only be default-imported using the 'esModuleInterop' flag
+3 export { default as be } from "./be.cjs";
+                      ~~
+  node_modules/zod/v4/locales/be.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:4:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/bg"' can only be default-imported using the 'esModuleInterop' flag
+4 export { default as bg } from "./bg.cjs";
+                      ~~
+  node_modules/zod/v4/locales/bg.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:5:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ca"' can only be default-imported using the 'esModuleInterop' flag
+5 export { default as ca } from "./ca.cjs";
+                      ~~
+  node_modules/zod/v4/locales/ca.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:6:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/cs"' can only be default-imported using the 'esModuleInterop' flag
+6 export { default as cs } from "./cs.cjs";
+                      ~~
+  node_modules/zod/v4/locales/cs.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:7:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/da"' can only be default-imported using the 'esModuleInterop' flag
+7 export { default as da } from "./da.cjs";
+                      ~~
+  node_modules/zod/v4/locales/da.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:8:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/de"' can only be default-imported using the 'esModuleInterop' flag
+8 export { default as de } from "./de.cjs";
+                      ~~
+  node_modules/zod/v4/locales/de.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:9:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/en"' can only be default-imported using the 'esModuleInterop' flag
+9 export { default as en } from "./en.cjs";
+                      ~~
+  node_modules/zod/v4/locales/en.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:10:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/eo"' can only be default-imported using the 'esModuleInterop' flag
+10 export { default as eo } from "./eo.cjs";
+                       ~~
+  node_modules/zod/v4/locales/eo.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:11:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/es"' can only be default-imported using the 'esModuleInterop' flag
+11 export { default as es } from "./es.cjs";
+                       ~~
+  node_modules/zod/v4/locales/es.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:12:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/fa"' can only be default-imported using the 'esModuleInterop' flag
+12 export { default as fa } from "./fa.cjs";
+                       ~~
+  node_modules/zod/v4/locales/fa.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:13:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/fi"' can only be default-imported using the 'esModuleInterop' flag
+13 export { default as fi } from "./fi.cjs";
+                       ~~
+  node_modules/zod/v4/locales/fi.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:14:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/fr"' can only be default-imported using the 'esModuleInterop' flag
+14 export { default as fr } from "./fr.cjs";
+                       ~~
+  node_modules/zod/v4/locales/fr.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:15:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/fr-CA"' can only be default-imported using the 'esModuleInterop' flag
+15 export { default as frCA } from "./fr-CA.cjs";
+                       ~~~~
+  node_modules/zod/v4/locales/fr-CA.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:16:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/he"' can only be default-imported using the 'esModuleInterop' flag
+16 export { default as he } from "./he.cjs";
+                       ~~
+  node_modules/zod/v4/locales/he.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:17:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/hu"' can only be default-imported using the 'esModuleInterop' flag
+17 export { default as hu } from "./hu.cjs";
+                       ~~
+  node_modules/zod/v4/locales/hu.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:18:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/hy"' can only be default-imported using the 'esModuleInterop' flag
+18 export { default as hy } from "./hy.cjs";
+                       ~~
+  node_modules/zod/v4/locales/hy.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:19:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/id"' can only be default-imported using the 'esModuleInterop' flag
+19 export { default as id } from "./id.cjs";
+                       ~~
+  node_modules/zod/v4/locales/id.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:20:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/is"' can only be default-imported using the 'esModuleInterop' flag
+20 export { default as is } from "./is.cjs";
+                       ~~
+  node_modules/zod/v4/locales/is.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:21:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/it"' can only be default-imported using the 'esModuleInterop' flag
+21 export { default as it } from "./it.cjs";
+                       ~~
+  node_modules/zod/v4/locales/it.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:22:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ja"' can only be default-imported using the 'esModuleInterop' flag
+22 export { default as ja } from "./ja.cjs";
+                       ~~
+  node_modules/zod/v4/locales/ja.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:23:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ka"' can only be default-imported using the 'esModuleInterop' flag
+23 export { default as ka } from "./ka.cjs";
+                       ~~
+  node_modules/zod/v4/locales/ka.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:24:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/kh"' can only be default-imported using the 'esModuleInterop' flag
+24 export { default as kh } from "./kh.cjs";
+                       ~~
+  node_modules/zod/v4/locales/kh.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:25:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/km"' can only be default-imported using the 'esModuleInterop' flag
+25 export { default as km } from "./km.cjs";
+                       ~~
+  node_modules/zod/v4/locales/km.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:26:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ko"' can only be default-imported using the 'esModuleInterop' flag
+26 export { default as ko } from "./ko.cjs";
+                       ~~
+  node_modules/zod/v4/locales/ko.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:27:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/lt"' can only be default-imported using the 'esModuleInterop' flag
+27 export { default as lt } from "./lt.cjs";
+                       ~~
+  node_modules/zod/v4/locales/lt.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:28:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/mk"' can only be default-imported using the 'esModuleInterop' flag
+28 export { default as mk } from "./mk.cjs";
+                       ~~
+  node_modules/zod/v4/locales/mk.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:29:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ms"' can only be default-imported using the 'esModuleInterop' flag
+29 export { default as ms } from "./ms.cjs";
+                       ~~
+  node_modules/zod/v4/locales/ms.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:30:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/nl"' can only be default-imported using the 'esModuleInterop' flag
+30 export { default as nl } from "./nl.cjs";
+                       ~~
+  node_modules/zod/v4/locales/nl.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:31:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/no"' can only be default-imported using the 'esModuleInterop' flag
+31 export { default as no } from "./no.cjs";
+                       ~~
+  node_modules/zod/v4/locales/no.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:32:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ota"' can only be default-imported using the 'esModuleInterop' flag
+32 export { default as ota } from "./ota.cjs";
+                       ~~~
+  node_modules/zod/v4/locales/ota.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:33:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ps"' can only be default-imported using the 'esModuleInterop' flag
+33 export { default as ps } from "./ps.cjs";
+                       ~~
+  node_modules/zod/v4/locales/ps.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:34:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/pl"' can only be default-imported using the 'esModuleInterop' flag
+34 export { default as pl } from "./pl.cjs";
+                       ~~
+  node_modules/zod/v4/locales/pl.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:35:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/pt"' can only be default-imported using the 'esModuleInterop' flag
+35 export { default as pt } from "./pt.cjs";
+                       ~~
+  node_modules/zod/v4/locales/pt.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:36:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ru"' can only be default-imported using the 'esModuleInterop' flag
+36 export { default as ru } from "./ru.cjs";
+                       ~~
+  node_modules/zod/v4/locales/ru.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:37:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/sl"' can only be default-imported using the 'esModuleInterop' flag
+37 export { default as sl } from "./sl.cjs";
+                       ~~
+  node_modules/zod/v4/locales/sl.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:38:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/sv"' can only be default-imported using the 'esModuleInterop' flag
+38 export { default as sv } from "./sv.cjs";
+                       ~~
+  node_modules/zod/v4/locales/sv.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:39:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ta"' can only be default-imported using the 'esModuleInterop' flag
+39 export { default as ta } from "./ta.cjs";
+                       ~~
+  node_modules/zod/v4/locales/ta.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:40:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/th"' can only be default-imported using the 'esModuleInterop' flag
+40 export { default as th } from "./th.cjs";
+                       ~~
+  node_modules/zod/v4/locales/th.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:41:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/tr"' can only be default-imported using the 'esModuleInterop' flag
+41 export { default as tr } from "./tr.cjs";
+                       ~~
+  node_modules/zod/v4/locales/tr.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:42:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ua"' can only be default-imported using the 'esModuleInterop' flag
+42 export { default as ua } from "./ua.cjs";
+                       ~~
+  node_modules/zod/v4/locales/ua.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:43:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/uk"' can only be default-imported using the 'esModuleInterop' flag
+43 export { default as uk } from "./uk.cjs";
+                       ~~
+  node_modules/zod/v4/locales/uk.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:44:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/ur"' can only be default-imported using the 'esModuleInterop' flag
+44 export { default as ur } from "./ur.cjs";
+                       ~~
+  node_modules/zod/v4/locales/ur.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:45:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/uz"' can only be default-imported using the 'esModuleInterop' flag
+45 export { default as uz } from "./uz.cjs";
+                       ~~
+  node_modules/zod/v4/locales/uz.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:46:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/vi"' can only be default-imported using the 'esModuleInterop' flag
+46 export { default as vi } from "./vi.cjs";
+                       ~~
+  node_modules/zod/v4/locales/vi.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:47:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/zh-CN"' can only be default-imported using the 'esModuleInterop' flag
+47 export { default as zhCN } from "./zh-CN.cjs";
+                       ~~~~
+  node_modules/zod/v4/locales/zh-CN.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:48:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/zh-TW"' can only be default-imported using the 'esModuleInterop' flag
+48 export { default as zhTW } from "./zh-TW.cjs";
+                       ~~~~
+  node_modules/zod/v4/locales/zh-TW.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+node_modules/zod/v4/locales/index.d.cts:49:21 - error TS1259: Module '"C:/Users/idoko/WebstormProjects/ProductAxis/node_modules/zod/v4/locales/yo"' can only be default-imported using the 'esModuleInterop' flag
+49 export { default as yo } from "./yo.cjs";
+                       ~~
+  node_modules/zod/v4/locales/yo.d.cts:5:1
+    5 export = _default;
+      ~~~~~~~~~~~~~~~~~~
+    This module is declared with 'export =', and can only be used with a default import when using the 'esModuleInterop' flag.
+src/lib/utils/index.ts:3:10 - error TS2305: Module '"ai"' has no exported member 'CoreMessage'.
+3 import { CoreMessage } from "ai";
+           ~~~~~~~~~~~
+src/lib/utils/index.ts:136:39 - error TS2339: Property 'message' does not exist on type 'string'.
+136         return `Error: ${result.error.message}`;
+                                          ~~~~~~~
+Found 53 errors in 4 files.
+Errors  Files
+     1  node_modules/ai/dist/index.d.ts:1580
+     1  node_modules/zod/v3/errors.d.cts:2
+    49  node_modules/zod/v4/locales/index.d.cts:1
+     2  src/lib/utils/index.ts:3

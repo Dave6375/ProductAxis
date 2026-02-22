@@ -13,6 +13,7 @@ export async function streamingAgent(
     uiStream: ReturnType<typeof createStreamableUI>,
     messages: CoreMessage[],
     systemPrompt: string,
+    codeType: 'python' | 'javascript' | 'html' | 'css' | 'sql' | 'markdown',
     update: boolean = false,
     llm: LLMSelection,
 ): Promise<StreamResponse> {
@@ -35,7 +36,7 @@ export async function streamingAgent(
     }
 
     try {
-        await streamText({
+        const result = await streamText({
             model: getModel(llm),
             messages,
             system: systemPrompt,
@@ -43,20 +44,14 @@ export async function streamingAgent(
                 fullResponse = event.text;
                 streamableAnswer.done();
             },
-        })
-            .then(async (result) => {
-                for await (const text of result.textStream) {
-                    if (text) {
-                        fullResponse = text;
-                        streamableAnswer.update(fullResponse);
-                    }
-                }
-            })
-            .catch((err) => {
-                hasError = true;
-                fullResponse = "Error: " + err.message;
+        });
+
+        for await (const text of result.textStream) {
+            if (text) {
+                fullResponse += text;
                 streamableAnswer.update(fullResponse);
-            });
+            }
+        }
 
         return { response: fullResponse, hasError };
     } catch (err) {

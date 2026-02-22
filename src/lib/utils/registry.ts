@@ -4,8 +4,8 @@ import { perplexity } from "@ai-sdk/perplexity";
 import { LLMSelection } from "../types";
 
 export const registry = createProviderRegistry({
-    xai,
-    perplexity,
+    xai: xai as any,
+    perplexity: perplexity as any,
 });
 
 export function getModel(llm?: LLMSelection) {
