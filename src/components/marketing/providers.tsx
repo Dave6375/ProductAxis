@@ -1,26 +1,32 @@
 "use client";
 
 import * as React from "react";
-import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
-import { ThemeProviderProps } from "next-themes/dist/types";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { ClerkProvider } from "@clerk/nextjs";
-import { AppStateProvider } from "@/lib/hooks/use-app-state";
-import { AppSettingsProvider } from "@/lib/hooks/use-app-settings";
-import { ExecutionResultProvider } from "@/lib/hooks/use-execution-result"
+import {ThemeProvider as NextThemesProvider, useTheme, type ThemeProviderProps} from "next-themes";
+import {TooltipProvider} from "@/components/ui/tooltip";
+import {SidebarProvider} from "@/components/ui/sidebar";
+import {ClerkProvider} from "@clerk/nextjs";
+import {AppStateProvider} from "@/lib/hooks/use-app-state";
+import {AppSettingsProvider} from "@/lib/hooks/use-app-settings";
+import {ExecutionResultProvider} from "@/lib/hooks/use-execution-result"
 
-export function Providers({ children, ...props }: ThemeProviderProps) {
+// This file is a **provider wrapper component**
+// This file is a provider wrapper component that sets up the foundational 
+// context and configuration for Julian's synth-ui project. It acts as a centralized place to wrap the entire application with necessary providers.
+export function Providers({children, ...props}: ThemeProviderProps) {
     return (
         <ClerkProvider>
             <NextThemesProvider {...props}>
-                    <SidebarProvider>
-                        <TooltipProvider delayDuration={50}>
-                            <AppStateProvider>
-                                <AppSettingsProvider>{children}</AppSettingsProvider>
-                            </AppStateProvider>
-                        </TooltipProvider>
-                    </SidebarProvider>
+                <SidebarProvider>
+                    <TooltipProvider delayDuration={50}>
+                        <AppStateProvider>
+                            <AppSettingsProvider>
+                                <ExecutionResultProvider>
+                                    {children}
+                                </ExecutionResultProvider>
+                            </AppSettingsProvider>
+                        </AppStateProvider>
+                    </TooltipProvider>
+                </SidebarProvider>
             </NextThemesProvider>
         </ClerkProvider>
     );
