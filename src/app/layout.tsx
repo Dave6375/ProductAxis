@@ -2,7 +2,7 @@ import { GeistSans } from "geist/font/sans";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import { Metadata, Viewport } from "next";
-import { Providers } from "@/components/providers";
+import { Providers } from "@/components/marketing/providers";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
