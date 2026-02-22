@@ -11,6 +11,7 @@ import {ExecutionResultProvider} from "@/lib/hooks/use-execution-result"
 
 // This file is a **provider wrapper component**
 // This file is a provider wrapper component that sets up the foundational 
+//
 // context and configuration for Julian's synth-ui project. It acts as a centralized place to wrap the entire application with necessary providers.
 export function Providers({children, ...props}: ThemeProviderProps) {
     return (
