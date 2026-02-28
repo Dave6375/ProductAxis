@@ -20,7 +20,7 @@ export const taskAnalysisSchema = z.object({
     ]),
     languages: z.enum(['python', 'javascript', 'html', 'css', 'sql', 'markdown']),
     complexity: z.enum(['low', 'medium', 'high']),
-    steps: z.array(z.string()).describe('High-level steps to accomplishg the task'),
+    steps: z.array(z.string()).describe('High-level steps to accomplish the task'),
 });
 
 export type TaskAnalysis = z.infer<typeof taskAnalysisSchema>;
@@ -36,12 +36,13 @@ export async function taskAnalyzer(
             messages,
             system: 'You are an automation task analyzer. Analyze the users request and determine the type of task, the programming languages involved, the complexity level, and the high-level steps needed to accomplish the task.' +
                 '1. Type of task (data processing, web scraping, etc.)' +
-                '2. Languages involved (python, javascript, etc.)' +
+                '2. Languages involved (python, javascript, html, css, sql, markdown etc.)' +
                 '3. Complexity level (low, medium, high)' +
-                '4. High-level steps to accomplish the task',
+                '4. High-level steps to accomplish the task' +
+                'Respond in JSON format.',
         })
 
-        return object as TaskAnalysis;
+        return object as TaskAnalysis
     } catch (error) {
         console.error("Error in taskAnalyzer:", error);
         return null;
