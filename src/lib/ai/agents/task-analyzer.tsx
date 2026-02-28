@@ -32,14 +32,14 @@ export async function taskAnalyzer(
     try {
         const { object } = await generateObject({
             model: getModel(llm),
-            schema: taskAnalysisSchema,
             messages,
+            schema: taskAnalysisSchema,
             system: 'You are an automation task analyzer. Analyze the users request and determine the type of task, the programming languages involved, the complexity level, and the high-level steps needed to accomplish the task.' +
                 '1. Type of task (data processing, web scraping, etc.)' +
                 '2. Languages involved (python, javascript, html, css, sql, markdown etc.)' +
                 '3. Complexity level (low, medium, high)' +
                 '4. High-level steps to accomplish the task' +
-                'Respond in JSON format.',
+                'Respond in JSON format according to the provided schema.',
         })
 
         return object as TaskAnalysis
