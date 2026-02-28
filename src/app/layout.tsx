@@ -1,5 +1,5 @@
 import { GeistSans } from "geist/font/sans";
-import "@/styles/globals.css";
+import "@/app/globals.css";
 import { cn } from "@/lib/utils";
 import { Metadata, Viewport } from "next";
 import { Providers } from "@/components/marketing/providers";
@@ -14,15 +14,9 @@ export const preferredRegion = "home";
 // Dynamically import heavy components
 const DynamicAnalytics = dynamic(
     () => import("@vercel/analytics/react").then((mod) => mod.Analytics),
-    {
-        ssr: false,
-    },
 );
 const DynamicSpeedInsights = dynamic(
     () => import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights),
-    {
-        ssr: false,
-    },
 );
 
 const siteConfig = {

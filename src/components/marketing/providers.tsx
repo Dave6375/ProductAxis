@@ -5,8 +5,8 @@ import {ThemeProvider as NextThemesProvider, useTheme, type ThemeProviderProps} 
 import {TooltipProvider} from "@/components/ui/tooltip";
 import {SidebarProvider} from "@/components/ui/sidebar";
 import {ClerkProvider} from "@clerk/nextjs";
-import {AppStateProvider} from "@/lib/hooks/use-app-state";
-import {AppSettingsProvider} from "@/lib/hooks/use-app-settings";
+import {AppStateProvider} from "../../lib/hooks/use-app-state";
+// import {AppSettingsProvider} from "@/lib/hooks/use-app-settings";
 import {ExecutionResultProvider} from "@/lib/hooks/use-execution-result"
 
 // This file is a **provider wrapper component**
@@ -19,13 +19,13 @@ export function Providers({children, ...props}: ThemeProviderProps) {
             <NextThemesProvider {...props}>
                 <SidebarProvider>
                     <TooltipProvider delayDuration={50}>
-                        <AppStateProvider>
-                            <AppSettingsProvider>
+                            <AppStateProvider>
+                                {/* <AppSettingsProvider> */}
                                 <ExecutionResultProvider>
                                     {children}
                                 </ExecutionResultProvider>
-                            </AppSettingsProvider>
-                        </AppStateProvider>
+                                {/* </AppSettingsProvider> */}
+                            </AppStateProvider>
                     </TooltipProvider>
                 </SidebarProvider>
             </NextThemesProvider>
