@@ -45,13 +45,19 @@ interface AppStateProviderProps {
 
 export function AppStateProvider({ children }: AppStateProviderProps) {
     const [state, setState] = useState<AppState>(() => {
+        const defaultState = { chat: null, isGenerating: false, prompt: "" };
         if (typeof window !== "undefined") {
             const savedState = localStorage.getItem(LOCAL_STORAGE_KEY);
-            return savedState
-                ? JSON.parse(savedState)
-                : { chat: null, isGenerating: false, prompt: "" };
+            if (savedState) {
+                try {
+                    const parsed = JSON.parse(savedState);
+                    return { ...parsed, isGenerating: false };
+                } catch (e) {
+                    return defaultState;
+                }
+            }
         }
-        return { chat: null, isGenerating: false, prompt: "" };
+        return defaultState;
     });
 
     useEffect(() => {

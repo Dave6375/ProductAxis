@@ -2,7 +2,7 @@ import { createStreamableUI, createStreamableValue} from "ai/rsc";
 import { CoreMessage, streamText} from "ai";
 import {getModel} from "../../utils/registry";
 import {LLMSelection} from "../../types";
-import {BotMessage} from "../../../components/chat-message";
+import {BotMessage} from "@/components/chat";
 
 export interface CodeGeneratorResponse {
     code: string;
@@ -18,7 +18,7 @@ export async function codeGenerator(
 
 ): Promise<CodeGeneratorResponse> {
     let fullResponse = "";
-    let hasError = false;
+    const hasError = false;
     const streamableAnswer = createStreamableValue<string>("");
 
     const SYSTEM_PROMPT = `You are an expert automation code generator. Your task is to write clean, production-ready ${language} code that accomplishes the user's automation task.

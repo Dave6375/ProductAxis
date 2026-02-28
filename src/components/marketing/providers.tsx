@@ -15,7 +15,7 @@ import {ExecutionResultProvider} from "@/lib/hooks/use-execution-result"
 // context and configuration for Julian's synth-ui project. It acts as a centralized place to wrap the entire application with necessary providers.
 export function Providers({children, ...props}: ThemeProviderProps) {
     return (
-        <ClerkProvider>
+        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
             <NextThemesProvider {...props}>
                 <SidebarProvider>
                     <TooltipProvider delayDuration={50}>

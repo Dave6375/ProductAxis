@@ -5,7 +5,6 @@ import { experimental__simple, dark} from "@clerk/themes";
 import { useTheme} from "next-themes";
 import {redirect} from "next/navigation";
 
-export const runtime = 'edge';
 export const preferredRegion = 'home';
 
 export default function SignInPage() {

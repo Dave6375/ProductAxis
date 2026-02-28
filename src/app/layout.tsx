@@ -4,11 +4,8 @@ import { cn } from "@/lib/utils";
 import { Metadata, Viewport } from "next";
 import { Providers } from "@/components/marketing/providers";
 import { Toaster } from "@/components/ui/sonner";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import dynamic from "next/dynamic";
 
-export const runtime = "edge";
 export const preferredRegion = "home";
 
 // Dynamically import heavy components
@@ -20,12 +17,12 @@ const DynamicSpeedInsights = dynamic(
 );
 
 const siteConfig = {
-    name: "Synth UI",
-    description: "Generative User Interfaces for the Web",
-    url: "https://synthui.design",
-    ogImage: "https://synthui.design/og.png",
-    creator: "Julian S.",
-    twitterHandle: "@julian-at",
+    name: "ProductAxis",
+    description: "AI-powered workflow automation and code generation",
+    url: "https://productaxis.idoko.com",
+    ogImage: "https://productaxis.idoko.com/og.png",
+    creator: "Idoko",
+    twitterHandle: "@idoko",
 };
 
 export const metadata: Metadata = {

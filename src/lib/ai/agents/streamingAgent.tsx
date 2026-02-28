@@ -1,7 +1,8 @@
 import { createStreamableUI, createStreamableValue } from "ai/rsc";
 import { CoreMessage, streamText } from "ai";
 import { getModel } from "@/lib/utils/registry";
-import { BotMessage, PlainMessage } from "@/components/chat-message";
+import { BotMessage } from "@/components/chat/bot-message";
+import { PlainMessage } from "@/components/chat/plain-message";
 import { LLMSelection } from "@/lib/types";
 
 export interface StreamResponse {
@@ -18,7 +19,7 @@ export async function streamingAgent(
     llm: LLMSelection,
 ): Promise<StreamResponse> {
     let fullResponse = "";
-    let hasError = false;
+    const hasError = false;
     const streamableAnswer = createStreamableValue<string>("");
 
     let textNode: React.ReactNode;

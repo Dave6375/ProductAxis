@@ -1,5 +1,19 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment Variables
+
+This project requires the following environment variables to be set in a `.env.local` file:
+
+```bash
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+OPENAI_API_KEY=your_openai_api_key
+KV_URL=your_vercel_kv_url
+KV_REST_API_URL=your_vercel_kv_rest_api_url
+KV_REST_API_TOKEN=your_vercel_kv_rest_api_token
+KV_REST_API_READ_ONLY_TOKEN=your_vercel_kv_rest_api_read_only_token
+```
+
 ## Getting Started
 
 First, run the development server:
