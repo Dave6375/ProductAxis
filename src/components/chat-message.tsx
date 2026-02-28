@@ -5,8 +5,8 @@ import remarkMath from 'remark-math'
 
 import { spinner } from "@/components/ui/spinner";
 import {cn} from "@/lib/utils";
-import {CodeBlock} from '@/components/ui/codeblock';
-import { MemoizedReactMarkdown } from '@/components/ui/markdown';
+import { CodeBlock} from '@/components/codeblock';
+import { MemoizedReactMarkdown } from '@/components/markdown';
 import { StreamableValue} from "ai/rsc";
 import { UserAvatar } from "user-avatar";
 import Logo from '@/components/logo'
