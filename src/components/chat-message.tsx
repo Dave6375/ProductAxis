@@ -8,5 +8,5 @@ import {cn} from "@/lib/utils";
 import { CodeBlock} from './codeblock';
 import { MemoizedReactMarkdown } from './markdown';
 import { StreamableValue} from "ai/rsc";
-import { UserAvatar } from "./user-avatar";
+import UserAvatar from "./user-avatar";
 import Logo from './logo'
