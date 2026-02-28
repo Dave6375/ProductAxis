@@ -1,5 +1,6 @@
 "use server";
 
+// This allows you to do all of this admin feature in your chat UI
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { kv } from "@vercel/kv";

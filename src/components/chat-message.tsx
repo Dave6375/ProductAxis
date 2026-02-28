@@ -70,8 +70,12 @@ export function MarkdownBlock({
                     h6({ children }) {
                         return <h6 className="mb-3 text-xs font-semibold">{children}</h6>;
                     },
-                    code({ node, inline, className, children, ...props }) {
-                        if (children.length) {
+                    code(props) {
+                        const { node, className, children, ...rest } = props;
+                        const match = /language-(\w+)/.exec(className || "");
+                        const isInline = !match && !String(children).includes('\n');
+
+                        if (Array.isArray(children) && children.length) {
                             if (children[0] == "▍") {
                                 return (
                                     <span className="mt-1 animate-pulse cursor-default">▍</span>
@@ -81,16 +85,14 @@ export function MarkdownBlock({
                             children[0] = (children[0] as string).replace("`▍`", "▍");
                         }
 
-                        const match = /language-(\w+)/.exec(className || "");
-
-                        if (inline) {
+                        if (isInline) {
                             return (
                                 <code
                                     className={cn(
                                         className,
                                         "my-3 rounded-md border bg-secondary px-1 text-sm font-medium text-secondary-foreground shadow-sm",
                                     )}
-                                    {...props}
+                                    {...rest}
                                 >
                                     {children}
                                 </code>
@@ -103,7 +105,7 @@ export function MarkdownBlock({
                                 language={(match && match[1]) || ""}
                                 value={String(children).replace(/\n$/, "")}
                                 raw={raw}
-                                {...props}
+                                {...rest}
                             />
                         );
                     },

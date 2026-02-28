@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { Chat } from "@/lib/types";
-import { renameChat } from "@/lib/actions/chat";
+import { Chat } from "../types";
+import { renameChat } from "../actions/chat";
 import { toast } from "sonner";
 
 const LOCAL_STORAGE_KEY = "app-state";

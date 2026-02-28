@@ -1,11 +1,11 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/utils";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { cn } from "../lib/utils";
+import { Skeleton } from "./ui/skeleton";
 import { useEffect, useState } from "react";
-import { useAppState } from "@/lib/hooks/use-app-state";
+import { useAppState } from "../lib/hooks/use-app-state";
 import { UserIcon } from "hugeicons-react";
 
 interface UserAvatarProps extends React.HTMLAttributes<HTMLDivElement> {}
