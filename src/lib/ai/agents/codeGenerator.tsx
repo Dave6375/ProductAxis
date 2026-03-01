@@ -1,13 +1,25 @@
-import { createStreamableUI, createStreamableValue} from "ai/rsc";
+import { createStreamableUI } from "@ai-sdk/rsc";
 import { CoreMessage, streamText} from "ai";
-import {getModel} from "../../utils/registry";
-import {LLMSelection} from "../../types";
-import {BotMessage} from "@/components/chat";
+import { getModel } from "@/lib/utils/registry";
+import { LLMSelection } from "@/lib/types";
+import { BotCard } from "../../../app/chat/chat-components";
 
 export interface CodeGeneratorResponse {
     code: string;
     language: 'python' | 'javascript' | 'html' | 'css' | 'sql' | 'markdown';
     hasError: boolean;
+}
+
+function renderCodeMessage(content: string) {
+    return (
+        <BotCard>
+             <div className="flex-1 space-y-2 overflow-hidden px-1">
+                <pre className="mb-3 overflow-x-auto whitespace-pre-wrap rounded-md border bg-secondary p-3 text-sm leading-relaxed last:mb-0">
+                    {content}
+                </pre>
+            </div>
+        </BotCard>
+    );
 }
 
 export async function codeGenerator(
@@ -19,7 +31,6 @@ export async function codeGenerator(
 ): Promise<CodeGeneratorResponse> {
     let fullResponse = "";
     const hasError = false;
-    const streamableAnswer = createStreamableValue<string>("");
 
     const SYSTEM_PROMPT = `You are an expert automation code generator. Your task is to write clean, production-ready ${language} code that accomplishes the user's automation task.
     
@@ -38,8 +49,7 @@ export async function codeGenerator(
     
     `;
 
-    const textNode = <BotMessage content={streamableAnswer.value} />;
-    uiStream.append(textNode);
+    uiStream.update(renderCodeMessage(""));
 
     try {
         const result = await streamText({
@@ -48,16 +58,17 @@ export async function codeGenerator(
             system: SYSTEM_PROMPT,
             onFinish: (event) => {
                 fullResponse = event.text;
-                streamableAnswer.done();
             },
         });
 
         for await (const text of result.textStream) {
             if (text) {
-                fullResponse = text;
-                streamableAnswer.update(fullResponse);
+                fullResponse += text;
+                uiStream.update(renderCodeMessage(fullResponse));
             }
         }
+
+        uiStream.done(renderCodeMessage(fullResponse));
 
         return {
             code: fullResponse,
@@ -67,8 +78,7 @@ export async function codeGenerator(
 
     } catch (error) {
         const errorMessage = `Error: ${error instanceof Error ? error.message : "An unknown error occurred"}`;
-        streamableAnswer.update(errorMessage);
-        streamableAnswer.done();
+        uiStream.done(renderCodeMessage(errorMessage));
         return {
             code: errorMessage,
             language,

@@ -6,7 +6,7 @@ import {TooltipProvider} from "@/components/ui/tooltip";
 import {SidebarProvider} from "@/components/ui/sidebar";
 import {ClerkProvider} from "@clerk/nextjs";
 import {AppStateProvider} from "../../lib/hooks/use-app-state";
-// import {AppSettingsProvider} from "@/lib/hooks/use-app-settings";
+import {AppSettingsProvider} from "@/lib/hooks/use-app-settings";
 import {ExecutionResultProvider} from "@/lib/hooks/use-execution-result"
 
 // This file is a **provider wrapper component**
@@ -20,11 +20,11 @@ export function Providers({children, ...props}: ThemeProviderProps) {
                 <SidebarProvider>
                     <TooltipProvider delayDuration={50}>
                             <AppStateProvider>
-                                {/* <AppSettingsProvider> */}
+                                <AppSettingsProvider>
                                 <ExecutionResultProvider>
                                     {children}
                                 </ExecutionResultProvider>
-                                {/* </AppSettingsProvider> */}
+                                </AppSettingsProvider>
                             </AppStateProvider>
                     </TooltipProvider>
                 </SidebarProvider>

@@ -1,4 +1,7 @@
-import { StreamableValue, readStreamableValue } from "ai/rsc";
+"use client";
+
+import { readStreamableValue } from "@ai-sdk/rsc";
+import type { StreamableValue } from "@ai-sdk/rsc";
 import { useEffect, useState } from "react";
 
 export const useStreamableText = (
@@ -13,11 +16,17 @@ export const useStreamableText = (
             if (typeof content === "string") {
                 setRawContent(content);
             } else {
-                let value = "";
-                for await (const delta of readStreamableValue(content)) {
-                    if (typeof delta === "string") {
-                        setRawContent((value = value + delta));
+                try {
+                    let value = "";
+                    for await (const delta of readStreamableValue(content)) {
+                        if (typeof delta === "string") {
+                            setRawContent((value = value + delta));
+                        }
                     }
+                } catch (error) {
+                    console.error("Error in useStreamableText:", error);
+                    // Optionally set an error state or message
+                    setRawContent((v) => v + "\n\n[Error: Stream interrupted]");
                 }
             }
         })();

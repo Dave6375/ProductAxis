@@ -5,6 +5,8 @@ import { Metadata, Viewport } from "next";
 import { Providers } from "@/components/marketing/providers";
 import { Toaster } from "@/components/ui/sonner";
 import dynamic from "next/dynamic";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset } from "@/components/ui/sidebar";
 
 export const preferredRegion = "home";
 
@@ -53,7 +55,7 @@ export const metadata: Metadata = {
         creator: siteConfig.twitterHandle,
     },
     keywords: [
-        "synth ui",
+        "axis ui",
         "UI design",
         "UI generation",
         "AI",
@@ -98,10 +100,13 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
-            <main className="flex max-h-screen min-h-screen flex-1 flex-col bg-background">
-                {children}
-                <Toaster />
-            </main>
+            <div className="flex h-screen w-full overflow-hidden">
+                <AppSidebar />
+                <SidebarInset className="flex flex-col flex-1 overflow-hidden bg-background">
+                    {children}
+                </SidebarInset>
+            </div>
+            <Toaster />
         </Providers>
         <DynamicAnalytics />
         <DynamicSpeedInsights />

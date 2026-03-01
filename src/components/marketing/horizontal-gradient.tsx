@@ -7,7 +7,7 @@ export const HorizontalGradient = ({
     ...props
 }: {
     className?: string
-    [x: string]: any;
+    [x: string]: unknown;
 }) => {
     const id = useId()
     return (

@@ -1,5 +1,6 @@
-import {createStreamableUI} from "ai/rsc";
+import {createStreamableUI} from "@ai-sdk/rsc";
 import { Sandbox } from "e2b";
+import { BotCard } from "../../../app/chat/chat-components";
 
 export interface ExecutionResponse {
     stdout: string;
@@ -16,7 +17,11 @@ export async function codeExecutor(
     const startTime = Date.now();
     let sb: Sandbox | undefined;
     try {
-        uiStream.append(<div className='text-sm text-blue-500'>Executing {language} code...</div>);
+        uiStream.append(
+            <BotCard showAvatar={false}>
+                <div className='text-sm text-blue-500'>Executing {language} code...</div>
+            </BotCard>
+        );
 
         sb = await Sandbox.create();
 
@@ -28,7 +33,11 @@ export async function codeExecutor(
         } else {
             // For other languages like HTML/CSS/SQL/Markdown, execution might not mean much in a sandbox without specific tools, 
             // but we can at least return a successful dummy result or just say it's not supported for direct execution.
-            uiStream.append(<div className='text-sm text-yellow-500'>Execution for {language} is not directly supported in the sandbox.</div>);
+            uiStream.append(
+                <BotCard showAvatar={false}>
+                    <div className='text-sm text-yellow-500'>Execution for {language} is not directly supported in the sandbox.</div>
+                </BotCard>
+            );
             return {
                 stdout: "",
                 stderr: `Execution for ${language} is not supported.`,
@@ -38,7 +47,9 @@ export async function codeExecutor(
         }
 
         uiStream.append(
-            <div className='text-sm text-green-500'>Execution completed!</div>
+            <BotCard showAvatar={false}>
+                <div className='text-sm text-green-500'>Execution completed!</div>
+            </BotCard>
         );
 
         return {
@@ -51,7 +62,9 @@ export async function codeExecutor(
         const errorMessage = err instanceof Error ? err.message : "Unknown error occurred";
 
         uiStream.append(
-            <div className='text-sm text-red-500'>Execution failed: {errorMessage}</div>
+            <BotCard showAvatar={false}>
+                <div className='text-sm text-red-500'>Execution failed: {errorMessage}</div>
+            </BotCard>
         );
         return {
             stdout: "",

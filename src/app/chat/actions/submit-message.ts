@@ -1,17 +1,18 @@
 "use server";
 
-import { createStreamableUI } from "ai/rsc";
+import { createStreamableUI } from "@ai-sdk/rsc";
 import { CoreMessage } from "ai";
 import { streamingAgent } from "@/lib/ai/agents/streamingAgent";
 import { generateTitle } from "@/lib/ai/agents/title-generator";
 import { saveChat } from "@/lib/actions/chat";
 import { auth } from "@clerk/nextjs/server";
-import { Chat } from "@/lib/types";
+import {Chat, LLMSelection} from "@/lib/types";
 
 export async function submitUserMessage(
     messages: CoreMessage[],
     llm: LLMSelection = "xai:grok-2-1212"
 ) {
+    console.log("submitUserMessage called with:", { messageCount: messages.length, llm });
     const { userId } = await auth();
     if (!userId) {
         throw new Error("Unauthorized");
@@ -35,9 +36,13 @@ export async function submitUserMessage(
 
     // After the stream finishes, we could save the chat
     streamPromise.then(async (result) => {
-        // Generate a title if it's the first message or something
-        // For now, let's just assume we want to save it if we have a chat ID
-        // This part needs more integration with the frontend's chat state
+        if (!result.hasError) {
+            // Placeholder for saving chat history
+            // We need a chat ID and title to save correctly
+            // For now just ensuring it doesn't crash
+        }
+    }).catch(err => {
+        console.error("Error in streamingAgent promise:", err);
     });
 
     return {

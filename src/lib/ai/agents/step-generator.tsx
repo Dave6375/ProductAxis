@@ -1,7 +1,8 @@
-import {createStreamableUI, createStreamableValue} from "ai/rsc";
-import {LLMSelection} from "../../types";
-import {streamText} from "ai";
-import {getModel} from "../../utils/registry";
+import { createStreamableUI, createStreamableValue } from "@ai-sdk/rsc";
+import { LLMSelection } from "@/lib/types";
+import { streamText } from "ai";
+import { getModel } from "@/lib/utils/registry";
+import { BotCard } from "../../../app/chat/chat-components";
 
 export  interface StepGenerator {
     steps: string[];
@@ -17,6 +18,12 @@ export async function stepGenerator(
 ): Promise<StepGenerator> {
     let fullResponse = "";
     const  streamableAnswer = createStreamableValue<string>("");
+
+    uiStream.append(
+        <BotCard showAvatar={false}>
+            <div className="text-sm font-semibold mb-2">Analysis:</div>
+        </BotCard>
+    );
 
     const SYSTEM_PROMPT = `Analyze this code and provide: 
     1. A brief description of what the code does
@@ -47,10 +54,22 @@ export async function stepGenerator(
 
         for await (const text of result.textStream) {
             if (text) {
-                fullResponse = text;
-                streamableAnswer.update(fullResponse);
+                fullResponse += text;
+                uiStream.update(
+                    <BotCard showAvatar={false}>
+                        <div className="text-sm font-semibold mb-2">Analysis:</div>
+                        <div className="text-sm whitespace-pre-wrap">{fullResponse}</div>
+                    </BotCard>
+                );
             }
         }
+
+        uiStream.update(
+            <BotCard showAvatar={false}>
+                <div className="text-sm font-semibold mb-2">Analysis:</div>
+                <div className="text-sm whitespace-pre-wrap">{fullResponse}</div>
+            </BotCard>
+        );
 
         // Parse the response
         const descMatch = fullResponse.match(/Description:\s*(.+)/);

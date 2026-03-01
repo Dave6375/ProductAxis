@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useAppState } from "@/lib/hooks/use-app-state";
-import { UserMessage } from "@/components/chat";
+import { useAppSettings } from "@/lib/hooks/use-app-settings";
+import { UserMessage, BotMessage } from "./chat-components";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { submitUserMessage } from "./actions/submit-message";
@@ -10,12 +11,21 @@ import { CoreMessage } from "ai";
 import { useUser } from "@clerk/nextjs";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
+// Helper to check if a component is a valid React element
+function isValidElement(element: unknown): element is React.ReactElement {
+    return !!element && typeof element === 'object' && 'type' in element;
+}
+
 export default function ChatPage() {
     const { user } = useUser();
     const { isGenerating, setIsGenerating } = useAppState();
+    const { settings } = useAppSettings();
     const [messages, setMessages] = useState<{ id: string; display: React.ReactNode }[]>([]);
+    const [history, setHistory] = useState<CoreMessage[]>([]);
     const [inputValue, setInputValue] = useState("");
     const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    const selectedLLM = settings.llm;
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -35,16 +45,12 @@ export default function ChatPage() {
         };
 
         setMessages((prev) => [...prev, userMsg]);
+        setHistory((prev) => [...prev, { role: "user", content: inputValue }]);
         setInputValue("");
         setIsGenerating(true);
 
         try {
-            // Prepare core messages for the API
-            const coreMessages: CoreMessage[] = [
-                { role: "user", content: inputValue }
-            ];
-
-            const response = await submitUserMessage(coreMessages);
+            const response = await submitUserMessage([...history, { role: "user", content: inputValue }], selectedLLM);
             
             setMessages((prev) => [
                 ...prev,
@@ -53,6 +59,8 @@ export default function ChatPage() {
                     display: response.display,
                 },
             ]);
+            // Note: We'd ideally add the assistant response to history too, but it's a StreamableUI
+            // For now, this is better than no history.
         } catch (error) {
             console.error("Failed to submit message:", error);
         } finally {
@@ -78,9 +86,18 @@ export default function ChatPage() {
                         <p>Start a conversation with ProductAxis AI assistant.</p>
                     </div>
                 )}
-                {messages.map((m) => (
-                    <div key={m.id}>{m.display}</div>
-                ))}
+                {messages.map((m) => {
+                    // Safety check: if 'display' looks like a plain object (which shouldn't happen with uiStream.value, but just in case)
+                    // we try to render it as a BotMessage if it's missing the React type.
+                    // This is a last-resort fallback for RSC hydration issues.
+                    if (m.display && typeof m.display === 'object' && !isValidElement(m.display)) {
+                        const anyDisplay = m.display as Record<string, unknown>;
+                        if (anyDisplay.content !== undefined) {
+                            return <div key={m.id}><BotMessage content={anyDisplay.content as string} /></div>;
+                        }
+                    }
+                    return <div key={m.id}>{m.display}</div>;
+                })}
                 <div ref={messagesEndRef} />
             </main>
 

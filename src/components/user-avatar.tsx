@@ -3,23 +3,25 @@
 import { useUser } from "@clerk/nextjs";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { cn } from "../lib/utils";
-import { Skeleton } from "./ui/skeleton";
 import { useEffect, useState } from "react";
-import { useAppState } from "../lib/hooks/use-app-state";
 import { UserIcon } from "hugeicons-react";
 
-interface UserAvatarProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserAvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+    size?: string;
+}
 
 export default function UserAvatar({ className, ...props }: UserAvatarProps) {
     const [isMounted, setIsMounted] = useState<boolean>(false);
     const { user } = useUser();
-    const { chat } = useAppState();
 
     useEffect(() => {
-        setIsMounted(true);
+        const timeout = setTimeout(() => setIsMounted(true), 0);
+        return () => clearTimeout(timeout);
     }, []);
 
-    if (!user || !isMounted)
+    if (!isMounted) return null;
+
+    if (!user)
         return (
             <div className="flex h-full w-full items-center justify-center p-0">
                 <FallBackUserAvatar />
