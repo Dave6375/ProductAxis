@@ -2,7 +2,7 @@ import { createStreamableUI, createStreamableValue } from "@ai-sdk/rsc";
 import { LLMSelection } from "@/lib/types";
 import { streamText } from "ai";
 import { getModel } from "@/lib/utils/registry";
-import { BotCard } from "../../../app/chat/chat-components";
+import { StreamRenderer } from "../../../app/chat/chat-ui";
 
 export  interface StepGenerator {
     steps: string[];
@@ -19,11 +19,10 @@ export async function stepGenerator(
     let fullResponse = "";
     const  streamableAnswer = createStreamableValue<string>("");
 
-    uiStream.append(
-        <BotCard showAvatar={false}>
-            <div className="text-sm font-semibold mb-2">Analysis:</div>
-        </BotCard>
-    );
+    uiStream.append(<StreamRenderer d={{
+        type: 'analysis_header',
+        content: 'Analysis:'
+    }} />);
 
     const SYSTEM_PROMPT = `Analyze this code and provide: 
     1. A brief description of what the code does
@@ -55,21 +54,17 @@ export async function stepGenerator(
         for await (const text of result.textStream) {
             if (text) {
                 fullResponse += text;
-                uiStream.update(
-                    <BotCard showAvatar={false}>
-                        <div className="text-sm font-semibold mb-2">Analysis:</div>
-                        <div className="text-sm whitespace-pre-wrap">{fullResponse}</div>
-                    </BotCard>
-                );
+                uiStream.update(<StreamRenderer d={{
+                    type: 'analysis_content',
+                    content: fullResponse
+                }} />);
             }
         }
 
-        uiStream.update(
-            <BotCard showAvatar={false}>
-                <div className="text-sm font-semibold mb-2">Analysis:</div>
-                <div className="text-sm whitespace-pre-wrap">{fullResponse}</div>
-            </BotCard>
-        );
+        uiStream.update(<StreamRenderer d={{
+            type: 'analysis_content',
+            content: fullResponse
+        }} />);
 
         // Parse the response
         const descMatch = fullResponse.match(/Description:\s*(.+)/);
@@ -82,7 +77,7 @@ export async function stepGenerator(
             .map((line) => line.replace(/^\d+\.\s/, ''))
 
             return { steps: steps.length > 0 ? steps : ["Execute code"], description }
-    } catch (error) {
+    } catch {
         return {
             steps: ["Execute code"],
             description: "Code execution",

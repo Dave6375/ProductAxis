@@ -2,11 +2,11 @@ import { createStreamableUI } from "@ai-sdk/rsc";
 import { CoreMessage, streamText } from "ai";
 import { getModel } from "@/lib/utils/registry";
 import { LLMSelection } from "@/lib/types";
-import { BotMessage } from "../../../app/chat/chat-components";
 import { taskAnalyzer } from "@/lib/ai/agents/task-analyzer";
 import { codeGenerator } from "@/lib/ai/agents/codeGenerator";
 import { codeExecutor } from "@/lib/ai/agents/codeExecutor";
 import { stepGenerator } from "@/lib/ai/agents/step-generator";
+import { StreamRenderer } from "../../../app/chat/chat-ui";
 
 export interface StreamResponse {
     response: string;
@@ -75,25 +75,25 @@ export async function streamingAgent(
     console.log("streamingAgent started for LLM:", llm);
 
     try {
-        uiStream.update(<BotMessage content="" showAvatar={showAvatar} indent={indent} />);
-        if (llm.startsWith("google:") && !process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+        uiStream.update(<StreamRenderer d={{ content: "", showAvatar, indent }} />);
+        if (llm.startsWith("google:") && (!process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY === 'your_gemini_api_key_here')) {
             const configMessage =
                 "Error: GOOGLE_GENERATIVE_AI_API_KEY is not configured. Add it to .env.local to use Google Gemini.";
-            uiStream.done(<BotMessage content={configMessage} showAvatar={showAvatar} indent={indent} />);
+            uiStream.done(<StreamRenderer d={{ content: configMessage, showAvatar, indent }} />);
             return { response: configMessage, hasError: true };
         }
 
-        if (llm.startsWith("perplexity:") && !process.env.PERPLEXITY_API_KEY) {
+        if (llm.startsWith("perplexity:") && (!process.env.PERPLEXITY_API_KEY || process.env.PERPLEXITY_API_KEY === 'your_perplexity_api_key_here')) {
             const configMessage =
                 "Error: PERPLEXITY_API_KEY is not configured. Add it to .env.local to use Perplexity.";
-            uiStream.done(<BotMessage content={configMessage} showAvatar={showAvatar} indent={indent} />);
+            uiStream.done(<StreamRenderer d={{ content: configMessage, showAvatar, indent }} />);
             return { response: configMessage, hasError: true };
         }
 
-        if (llm.startsWith("openai:") && !process.env.OPENAI_API_KEY) {
+        if (llm.startsWith("openai:") && (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your_openai_api_key_here')) {
             const configMessage =
                 "Error: OPENAI_API_KEY is not configured. Add it to .env.local to use ChatGPT.";
-            uiStream.done(<BotMessage content={configMessage} showAvatar={showAvatar} indent={indent} />);
+            uiStream.done(<StreamRenderer d={{ content: configMessage, showAvatar, indent }} />);
             return { response: configMessage, hasError: true };
         }
 
@@ -128,9 +128,9 @@ export async function streamingAgent(
             llm,
             messages,
             systemPrompt,
-            (text) => uiStream.update(<BotMessage content={text} showAvatar={showAvatar} indent={indent} />),
+            (text) => uiStream.update(<StreamRenderer d={{ content: text, showAvatar, indent }} />),
         );
-        uiStream.done(<BotMessage content={fullResponse} showAvatar={showAvatar} indent={indent} />);
+        uiStream.done(<StreamRenderer d={{ content: fullResponse, showAvatar, indent }} />);
         return { response: fullResponse, hasError: false };
     } catch (error) {
         const hasPerplexityKey = !!process.env.PERPLEXITY_API_KEY;
@@ -141,24 +141,26 @@ export async function streamingAgent(
 
         if (canFallbackToPerplexity) {
             const fallbackPrefix = "xAI account has no credits. Switched to Perplexity.\n\n";
-            uiStream.update(<BotMessage content={fallbackPrefix} showAvatar={showAvatar} indent={indent} />);
+            uiStream.update(<StreamRenderer d={{ content: fallbackPrefix, showAvatar, indent }} />);
 
             try {
                 const fallbackResponse = await streamWithModel(
                     "perplexity:sonar",
                     messages,
                     systemPrompt,
-                    (text) => uiStream.update(
-                        <BotMessage content={`${fallbackPrefix}${text}`} showAvatar={showAvatar} indent={indent} />,
-                    ),
+                    (text) => uiStream.update(<StreamRenderer d={{
+                        content: `${fallbackPrefix}${text}`,
+                        showAvatar,
+                        indent,
+                    }} />),
                 );
 
                 const response = `${fallbackPrefix}${fallbackResponse}`;
-                uiStream.done(<BotMessage content={response} showAvatar={showAvatar} indent={indent} />);
+                uiStream.done(<StreamRenderer d={{ content: response, showAvatar, indent }} />);
                 return { response, hasError: false };
             } catch (fallbackError) {
                 const fallbackMessage = `Error: ${getErrorMessage(fallbackError)}`;
-                uiStream.done(<BotMessage content={fallbackMessage} showAvatar={showAvatar} indent={indent} />);
+                uiStream.done(<StreamRenderer d={{ content: fallbackMessage, showAvatar, indent }} />);
                 return { response: fallbackMessage, hasError: true };
             }
         }
@@ -166,12 +168,12 @@ export async function streamingAgent(
         if (llm.startsWith("xai:") && isXaiNoCreditsError(error) && !hasPerplexityKey) {
             const message =
                 "Error: xAI account has no credits. Add xAI credits or configure PERPLEXITY_API_KEY and switch to Perplexity.";
-            uiStream.done(<BotMessage content={message} showAvatar={showAvatar} indent={indent} />);
+            uiStream.done(<StreamRenderer d={{ content: message, showAvatar, indent }} />);
             return { response: message, hasError: true };
         }
 
         const errorMessage = `Error: ${getErrorMessage(error)}`;
-        uiStream.done(<BotMessage content={errorMessage} showAvatar={showAvatar} indent={indent} />);
+        uiStream.done(<StreamRenderer d={{ content: errorMessage, showAvatar, indent }} />);
         return { response: errorMessage, hasError: true };
     }
 }

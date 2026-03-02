@@ -7,6 +7,10 @@ import { generateTitle } from "@/lib/ai/agents/title-generator";
 import { saveChat } from "@/lib/actions/chat";
 import { auth } from "@clerk/nextjs/server";
 import {Chat, LLMSelection} from "@/lib/types";
+import { StreamRenderer } from "../chat-ui";
+
+// Forces the manifest to register the components used in the stream
+const _ = StreamRenderer;
 
 export async function submitUserMessage(
     messages: CoreMessage[],

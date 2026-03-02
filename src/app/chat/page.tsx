@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useAppState } from "@/lib/hooks/use-app-state";
 import { useAppSettings } from "@/lib/hooks/use-app-settings";
-import { UserMessage, BotMessage } from "./chat-components";
+import { UserMessage, BotMessage, BotCard, StreamRenderer } from "./chat-ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { submitUserMessage } from "./actions/submit-message";
@@ -11,9 +11,8 @@ import { CoreMessage } from "ai";
 import { useUser } from "@clerk/nextjs";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
-// Helper to check if a component is a valid React element
-function isValidElement(element: unknown): element is React.ReactElement {
-    return !!element && typeof element === 'object' && 'type' in element;
+function StreamedComponent({ display }: { display: React.ReactNode }) {
+    return <>{display}</>;
 }
 
 export default function ChatPage() {
@@ -28,6 +27,8 @@ export default function ChatPage() {
     const selectedLLM = settings.llm;
 
     const scrollToBottom = () => {
+        // Ensure StreamRenderer is bundled for RSC streaming
+        if (!StreamRenderer) console.error("StreamRenderer is not available");
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
@@ -70,6 +71,11 @@ export default function ChatPage() {
 
     return (
         <div className="flex flex-col h-screen bg-background">
+            <div className="hidden" aria-hidden="true">
+                <StreamRenderer d={{ content: "" }} />
+                <BotMessage content="" />
+                <BotCard>null</BotCard>
+            </div>
             <header className="flex items-center justify-between border-b px-4 h-14">
                 <div className="flex items-center gap-2">
                     <SidebarTrigger />
@@ -87,16 +93,7 @@ export default function ChatPage() {
                     </div>
                 )}
                 {messages.map((m) => {
-                    // Safety check: if 'display' looks like a plain object (which shouldn't happen with uiStream.value, but just in case)
-                    // we try to render it as a BotMessage if it's missing the React type.
-                    // This is a last-resort fallback for RSC hydration issues.
-                    if (m.display && typeof m.display === 'object' && !isValidElement(m.display)) {
-                        const anyDisplay = m.display as Record<string, unknown>;
-                        if (anyDisplay.content !== undefined) {
-                            return <div key={m.id}><BotMessage content={anyDisplay.content as string} /></div>;
-                        }
-                    }
-                    return <div key={m.id}>{m.display}</div>;
+                    return <div key={m.id}><StreamedComponent display={m.display} /></div>;
                 })}
                 <div ref={messagesEndRef} />
             </main>

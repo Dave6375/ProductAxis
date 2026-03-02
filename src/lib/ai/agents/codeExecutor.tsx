@@ -1,6 +1,6 @@
 import {createStreamableUI} from "@ai-sdk/rsc";
 import { Sandbox } from "e2b";
-import { BotCard } from "../../../app/chat/chat-components";
+import { StreamRenderer } from "../../../app/chat/chat-ui";
 
 export interface ExecutionResponse {
     stdout: string;
@@ -17,11 +17,26 @@ export async function codeExecutor(
     const startTime = Date.now();
     let sb: Sandbox | undefined;
     try {
-        uiStream.append(
-            <BotCard showAvatar={false}>
-                <div className='text-sm text-blue-500'>Executing {language} code...</div>
-            </BotCard>
-        );
+        uiStream.append(<StreamRenderer d={{
+            type: 'execution_status',
+            content: `Executing ${language} code...`,
+            status: 'in_progress'
+        }} />);
+
+        if (!process.env.E2B_API_KEY || process.env.E2B_API_KEY === 'your_e2b_api_key_here') {
+            const configMessage = "Error: E2B_API_KEY is not configured or still has the default value. Add it to .env.local to use the sandbox.";
+            uiStream.append(<StreamRenderer d={{
+                type: 'execution_status',
+                content: configMessage,
+                status: 'failed'
+            }} />);
+            return {
+                stdout: "",
+                stderr: configMessage,
+                error: true,
+                executionTime: Date.now() - startTime,
+            };
+        }
 
         sb = await Sandbox.create();
 
@@ -33,11 +48,11 @@ export async function codeExecutor(
         } else {
             // For other languages like HTML/CSS/SQL/Markdown, execution might not mean much in a sandbox without specific tools, 
             // but we can at least return a successful dummy result or just say it's not supported for direct execution.
-            uiStream.append(
-                <BotCard showAvatar={false}>
-                    <div className='text-sm text-yellow-500'>Execution for {language} is not directly supported in the sandbox.</div>
-                </BotCard>
-            );
+            uiStream.append(<StreamRenderer d={{
+                type: 'execution_status',
+                content: `Execution for ${language} is not directly supported in the sandbox.`,
+                status: 'unsupported'
+            }} />);
             return {
                 stdout: "",
                 stderr: `Execution for ${language} is not supported.`,
@@ -46,11 +61,11 @@ export async function codeExecutor(
             };
         }
 
-        uiStream.append(
-            <BotCard showAvatar={false}>
-                <div className='text-sm text-green-500'>Execution completed!</div>
-            </BotCard>
-        );
+        uiStream.append(<StreamRenderer d={{
+            type: 'execution_status',
+            content: 'Execution completed!',
+            status: 'completed'
+        }} />);
 
         return {
             stdout: result.stdout || "",
@@ -61,11 +76,11 @@ export async function codeExecutor(
     } catch (err) {
         const errorMessage = err instanceof Error ? err.message : "Unknown error occurred";
 
-        uiStream.append(
-            <BotCard showAvatar={false}>
-                <div className='text-sm text-red-500'>Execution failed: {errorMessage}</div>
-            </BotCard>
-        );
+        uiStream.append(<StreamRenderer d={{
+            type: 'execution_status',
+            content: `Execution failed: ${errorMessage}`,
+            status: 'failed'
+        }} />);
         return {
             stdout: "",
             stderr: errorMessage,

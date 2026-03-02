@@ -1,17 +1,8 @@
 "use client";
 
 import { LLMSelection } from "@/lib/types";
-import { Button } from "@/components/ui/button";
-import { ArrowDown01Icon, Forward02Icon, SparklesIcon } from "hugeicons-react";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-} from "@/components/ui/select";
+import { Forward02Icon, SparklesIcon } from "hugeicons-react";
 import { toast } from "sonner";
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { useAppSettings } from "@/lib/hooks/use-app-settings";
 
 export const llms: LLMItem[] = [
@@ -63,62 +54,44 @@ interface LLMItem {
 
 export default function LLMSelector() {
     const { updateSettings, settings } = useAppSettings();
-    const [open, setOpen] = useState<boolean>(false);
     const selectedLLM = settings.llm;
 
     return (
-        <Select
-            defaultValue={
-                llms.find((llm) => llm.value === selectedLLM)?.value ?? "openai:gpt-4o"
-            }
-            onValueChange={(value) => {
-                updateSettings({
-                    llm: value as LLMSelection,
-                });
-                toast("Successfully changed LLM", {
-                    icon: llms.find((llm) => llm.value === value)?.icon,
-                    description: "LLM changed to " + value.split(":")[1],
-                });
-            }}
-            open={open}
-            onOpenChange={setOpen}
-        >
-            <SelectTrigger asChild className="border-none px-0 shadow-none w-full">
-                <Button variant="list-item" className="justify-between">
-                    <div className="flex items-center gap-3">
-                        {llms.find((llm) => llm.value === selectedLLM)?.icon}{" "}
-                        {llms.find((llm) => llm.value === selectedLLM)?.name}
-                    </div>
-                    <motion.div
-                        animate={{ rotate: open ? -90 : 0 }}
-                        transition={{ duration: 0.2 }}
-                    >
-                        <ArrowDown01Icon className="h-4 w-4 text-muted-foreground" />
-                    </motion.div>
-                </Button>
-            </SelectTrigger>
-            <SelectContent className="mx-6 rounded-xl text-xl" side="right">
-                {llms.map((llm) => (
-                    <SelectItem
-                        className="rounded-lg px-2 py-0.5"
-                        value={llm.value}
+        <div className="flex flex-col gap-1 w-full">
+            {llms.map((llm) => {
+                const isSelected = selectedLLM === llm.value;
+                return (
+                    <button
                         key={llm.value}
+                        onClick={() => {
+                            updateSettings({
+                                llm: llm.value as LLMSelection,
+                            });
+                            toast("Successfully changed LLM", {
+                                icon: llm.icon,
+                                description: "LLM changed to " + llm.name,
+                            });
+                        }}
+                        className={`
+                            flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all duration-200
+                            hover:bg-accent hover:text-accent-foreground
+                            ${isSelected ? "bg-accent text-accent-foreground ring-1 ring-ring" : "text-muted-foreground"}
+                        `}
                     >
-                        <div className="flex items-center gap-3 p-1 pr-5">
+                        <div className="flex-shrink-0">
                             {llm.icon}
-                            <div className="flex flex-col">
-                                <span className="text-sm font-medium">{llm.name}</span>
-                                <span className="text-xs text-muted-foreground">
-                  {llm.description}
-                </span>
-                                <span className="text-xs text-muted-foreground">
-                  {llm.suffix}
-                </span>
-                            </div>
                         </div>
-                    </SelectItem>
-                ))}
-            </SelectContent>
-        </Select>
+                        <div className="flex flex-col min-w-0">
+                            <span className={`text-sm font-medium truncate ${isSelected ? "text-foreground" : ""}`}>
+                                {llm.name}
+                            </span>
+                            <span className="text-[10px] text-muted-foreground truncate leading-tight">
+                                {llm.description}
+                            </span>
+                        </div>
+                    </button>
+                );
+            })}
+        </div>
     );
 }

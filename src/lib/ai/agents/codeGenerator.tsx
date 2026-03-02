@@ -2,7 +2,7 @@ import { createStreamableUI } from "@ai-sdk/rsc";
 import { CoreMessage, streamText} from "ai";
 import { getModel } from "@/lib/utils/registry";
 import { LLMSelection } from "@/lib/types";
-import { BotCard } from "../../../app/chat/chat-components";
+import { StreamRenderer } from "../../../app/chat/chat-ui";
 
 export interface CodeGeneratorResponse {
     code: string;
@@ -11,15 +11,10 @@ export interface CodeGeneratorResponse {
 }
 
 function renderCodeMessage(content: string) {
-    return (
-        <BotCard>
-             <div className="flex-1 space-y-2 overflow-hidden px-1">
-                <pre className="mb-3 overflow-x-auto whitespace-pre-wrap rounded-md border bg-secondary p-3 text-sm leading-relaxed last:mb-0">
-                    {content}
-                </pre>
-            </div>
-        </BotCard>
-    );
+    return {
+        type: 'code',
+        content
+    };
 }
 
 export async function codeGenerator(
@@ -49,7 +44,7 @@ export async function codeGenerator(
     
     `;
 
-    uiStream.update(renderCodeMessage(""));
+    uiStream.update(<StreamRenderer d={renderCodeMessage("")} />);
 
     try {
         const result = await streamText({
@@ -64,11 +59,11 @@ export async function codeGenerator(
         for await (const text of result.textStream) {
             if (text) {
                 fullResponse += text;
-                uiStream.update(renderCodeMessage(fullResponse));
+                uiStream.update(<StreamRenderer d={renderCodeMessage(fullResponse)} />);
             }
         }
 
-        uiStream.done(renderCodeMessage(fullResponse));
+        uiStream.done(<StreamRenderer d={renderCodeMessage(fullResponse)} />);
 
         return {
             code: fullResponse,
@@ -78,7 +73,7 @@ export async function codeGenerator(
 
     } catch (error) {
         const errorMessage = `Error: ${error instanceof Error ? error.message : "An unknown error occurred"}`;
-        uiStream.done(renderCodeMessage(errorMessage));
+        uiStream.done(<StreamRenderer d={renderCodeMessage(errorMessage)} />);
         return {
             code: errorMessage,
             language,
